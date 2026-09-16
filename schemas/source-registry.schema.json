@@ -1,0 +1,102 @@
+{
+  "$defs": {
+    "SourceSpec": {
+      "additionalProperties": false,
+      "description": "Describe one registered source document and its ownership metadata.\n\nAttributes:\n    source_id: Stable, lowercase identifier used in topic IDs and reports.\n    revision: Human-readable source revision.\n    product_model: Synthetic product or model scope for the sample corpus.\n    owner: Person or team responsible for reviewing the source.\n    license: License or usage statement for the source.\n    path: Registry-relative path to the source file.\n    sha256: Optional expected checksum; a mismatch blocks publication.\n    migration_status: Workflow state used by reports and filters.",
+      "properties": {
+        "license": {
+          "maxLength": 120,
+          "minLength": 1,
+          "title": "License",
+          "type": "string"
+        },
+        "migration_status": {
+          "default": "queued",
+          "enum": [
+            "queued",
+            "in-review",
+            "approved"
+          ],
+          "title": "Migration Status",
+          "type": "string"
+        },
+        "owner": {
+          "maxLength": 120,
+          "minLength": 1,
+          "title": "Owner",
+          "type": "string"
+        },
+        "path": {
+          "maxLength": 260,
+          "minLength": 1,
+          "title": "Path",
+          "type": "string"
+        },
+        "product_model": {
+          "maxLength": 120,
+          "minLength": 1,
+          "title": "Product Model",
+          "type": "string"
+        },
+        "revision": {
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Revision",
+          "type": "string"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sha256"
+        },
+        "source_id": {
+          "pattern": "^[a-z0-9][a-z0-9._-]{1,63}$",
+          "title": "Source Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id",
+        "revision",
+        "product_model",
+        "owner",
+        "license",
+        "path"
+      ],
+      "title": "SourceSpec",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Validate the versioned list of documents selected for a migration run.",
+  "properties": {
+    "registry_version": {
+      "const": 1,
+      "title": "Registry Version",
+      "type": "integer"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/SourceSpec"
+      },
+      "maxItems": 500,
+      "minItems": 1,
+      "title": "Sources",
+      "type": "array"
+    }
+  },
+  "required": [
+    "registry_version",
+    "sources"
+  ],
+  "title": "SourceRegistry",
+  "type": "object"
+}

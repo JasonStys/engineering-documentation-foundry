@@ -1,0 +1,195 @@
+{
+  "$defs": {
+    "DocumentMetrics": {
+      "additionalProperties": false,
+      "description": "Summarize migration coverage for one registered source.",
+      "properties": {
+        "block_count": {
+          "minimum": 0,
+          "title": "Block Count",
+          "type": "integer"
+        },
+        "checksum": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Checksum",
+          "type": "string"
+        },
+        "page_count": {
+          "minimum": 0,
+          "title": "Page Count",
+          "type": "integer"
+        },
+        "source_id": {
+          "pattern": "^[a-z0-9][a-z0-9._-]{1,63}$",
+          "title": "Source Id",
+          "type": "string"
+        },
+        "table_count": {
+          "minimum": 0,
+          "title": "Table Count",
+          "type": "integer"
+        },
+        "topic_count": {
+          "minimum": 0,
+          "title": "Topic Count",
+          "type": "integer"
+        },
+        "warning_count": {
+          "minimum": 0,
+          "title": "Warning Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "source_id",
+        "checksum",
+        "page_count",
+        "block_count",
+        "topic_count",
+        "table_count",
+        "warning_count"
+      ],
+      "title": "DocumentMetrics",
+      "type": "object"
+    },
+    "IssueSeverity": {
+      "description": "Publication impact assigned to an observable migration issue.",
+      "enum": [
+        "info",
+        "warning",
+        "error"
+      ],
+      "title": "IssueSeverity",
+      "type": "string"
+    },
+    "MigrationIssue": {
+      "additionalProperties": false,
+      "description": "Describe a deterministic finding that a reviewer can locate and resolve.",
+      "properties": {
+        "block_id": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z0-9][a-z0-9._-]{1,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Block Id"
+        },
+        "code": {
+          "pattern": "^[a-z0-9][a-z0-9._-]{1,63}$",
+          "title": "Code",
+          "type": "string"
+        },
+        "message": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Message",
+          "type": "string"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "severity": {
+          "$ref": "#/$defs/IssueSeverity"
+        },
+        "source_id": {
+          "pattern": "^[a-z0-9][a-z0-9._-]{1,63}$",
+          "title": "Source Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "severity",
+        "message",
+        "source_id"
+      ],
+      "title": "MigrationIssue",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Provide the machine-readable decision record for one pipeline run.",
+  "properties": {
+    "build_id": {
+      "pattern": "^[a-z0-9][a-z0-9._-]{1,63}$",
+      "title": "Build Id",
+      "type": "string"
+    },
+    "documents": {
+      "items": {
+        "$ref": "#/$defs/DocumentMetrics"
+      },
+      "title": "Documents",
+      "type": "array"
+    },
+    "issue_counts": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "propertyNames": {
+        "$ref": "#/$defs/IssueSeverity"
+      },
+      "title": "Issue Counts",
+      "type": "object"
+    },
+    "issues": {
+      "items": {
+        "$ref": "#/$defs/MigrationIssue"
+      },
+      "title": "Issues",
+      "type": "array"
+    },
+    "publication_allowed": {
+      "title": "Publication Allowed",
+      "type": "boolean"
+    },
+    "report_version": {
+      "const": 1,
+      "default": 1,
+      "title": "Report Version",
+      "type": "integer"
+    },
+    "source_count": {
+      "minimum": 0,
+      "title": "Source Count",
+      "type": "integer"
+    },
+    "source_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Source Digest",
+      "type": "string"
+    },
+    "topic_count": {
+      "minimum": 0,
+      "title": "Topic Count",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "build_id",
+    "source_digest",
+    "publication_allowed",
+    "source_count",
+    "topic_count",
+    "issue_counts",
+    "documents",
+    "issues"
+  ],
+  "title": "MigrationReport",
+  "type": "object"
+}

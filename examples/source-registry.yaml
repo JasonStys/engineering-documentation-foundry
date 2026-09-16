@@ -1,0 +1,58 @@
+registry_version: 1
+sources:
+  - source_id: pump-controller-guide
+    revision: "1.0"
+    product_model: Aquila PX-4
+    owner: Documentation Engineering
+    license: MIT synthetic fixture
+    path: sources/pump-controller-guide.pdf
+    migration_status: approved
+  - source_id: sensor-calibration
+    revision: "1.0"
+    product_model: Nimbus PS-8
+    owner: Documentation Engineering
+    license: MIT synthetic fixture
+    path: sources/sensor-calibration.pdf
+    migration_status: approved
+  - source_id: firmware-release-notes
+    revision: "1.0"
+    product_model: Forge RT-12
+    owner: Documentation Engineering
+    license: MIT synthetic fixture
+    path: sources/firmware-release-notes.pdf
+    migration_status: approved
+  - source_id: network-troubleshooting
+    revision: "1.0"
+    product_model: Relay NX-6
+    owner: Documentation Engineering
+    license: MIT synthetic fixture
+    path: sources/network-troubleshooting.pdf
+    migration_status: approved
+  - source_id: api-reference
+    revision: "1.0"
+    product_model: Atlas API-2
+    owner: Documentation Engineering
+    license: MIT synthetic fixture
+    path: sources/api-reference.pdf
+    migration_status: approved
+  - source_id: installation-procedure
+    revision: "1.0"
+    product_model: Harbor IO-16
+    owner: Documentation Engineering
+    license: MIT synthetic fixture
+    path: sources/installation-procedure.pdf
+    migration_status: approved
+  - source_id: maintenance-checklist
+    revision: "1.0"
+    product_model: Summit Drive-9
+    owner: Documentation Engineering
+    license: MIT synthetic fixture
+    path: sources/maintenance-checklist.pdf
+    migration_status: approved
+  - source_id: safety-and-specifications
+    revision: "1.0"
+    product_model: Cobalt PSU-24
+    owner: Documentation Engineering
+    license: MIT synthetic fixture
+    path: sources/safety-and-specifications.pdf
+    migration_status: approved
