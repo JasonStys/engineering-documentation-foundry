@@ -87,23 +87,23 @@ do not stop publication because they require human review rather than fabricated
 
 ## Code map
 
-| File | Responsibility |
-|---|---|
-| `src/docfoundry/models.py` | Strict immutable Pydantic contracts for registries, extraction, topics, warnings, and reports. |
-| `src/docfoundry/registry.py` | Safe YAML/JSON loading, path containment, streaming hashes, and checksum enforcement. |
-| `src/docfoundry/extractor.py` | Resource-bounded PyMuPDF extraction with text, table, image, and page-coordinate capture. |
-| `src/docfoundry/normalizer.py` | Stable slugs, topic segmentation, content classification, and structured safety parsing. |
-| `src/docfoundry/validator.py` | Duplicate, empty-topic, image-alt, table-header, and irregular-row quality checks. |
-| `src/docfoundry/reporting.py` | Deterministic build IDs, coverage metrics, Markdown/JSON findings, and JSONL traces. |
-| `src/docfoundry/publisher.py` | Autoescaped Jinja templates and accessible semantic HTML/CSS generation. |
-| `src/docfoundry/pipeline.py` | End-to-end orchestration, failure capture, manifests, safe overwrite, and atomic commit. |
-| `src/docfoundry/cli.py` | Testable `build` command and stable process exit codes. |
-| `tools/generate_fixtures.py` | Recreates the eight original synthetic reference PDFs. |
-| `tools/export_schemas.py` | Exports public registry and migration-report JSON Schemas. |
-| `tools/update_symbol_index.py` | Maintains line-accurate module symbol indexes in code headers. |
-| `examples/source-registry.yaml` | Complete reference-corpus registry and ownership metadata. |
-| `tests/` | Unit, property, integration, hostile-input, policy, and performance checks. |
-| `.github/workflows/ci.yml` | Least-privilege, commit-pinned continuous integration across supported Python versions. |
+| File                            | Responsibility                                                                                 |
+| ------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `src/docfoundry/models.py`      | Strict immutable Pydantic contracts for registries, extraction, topics, warnings, and reports. |
+| `src/docfoundry/registry.py`    | Safe YAML/JSON loading, path containment, streaming hashes, and checksum enforcement.          |
+| `src/docfoundry/extractor.py`   | Resource-bounded PyMuPDF extraction with text, table, image, and page-coordinate capture.      |
+| `src/docfoundry/normalizer.py`  | Stable slugs, topic segmentation, content classification, and structured safety parsing.       |
+| `src/docfoundry/validator.py`   | Duplicate, empty-topic, image-alt, table-header, and irregular-row quality checks.             |
+| `src/docfoundry/reporting.py`   | Deterministic build IDs, coverage metrics, Markdown/JSON findings, and JSONL traces.           |
+| `src/docfoundry/publisher.py`   | Autoescaped Jinja templates and accessible semantic HTML/CSS generation.                       |
+| `src/docfoundry/pipeline.py`    | End-to-end orchestration, failure capture, manifests, safe overwrite, and atomic commit.       |
+| `src/docfoundry/cli.py`         | Testable `build` command and stable process exit codes.                                        |
+| `tools/generate_fixtures.py`    | Recreates the eight original synthetic reference PDFs.                                         |
+| `tools/export_schemas.py`       | Exports public registry and migration-report JSON Schemas.                                     |
+| `tools/update_symbol_index.py`  | Maintains line-accurate module symbol indexes in code headers.                                 |
+| `examples/source-registry.yaml` | Complete reference-corpus registry and ownership metadata.                                     |
+| `tests/`                        | Unit, property, integration, hostile-input, policy, and performance checks.                    |
+| `.github/workflows/ci.yml`      | Least-privilege, commit-pinned continuous integration across supported Python versions.        |
 
 The [complete file reference](docs/file-reference.md) summarizes every tracked file. Each Python
 module also begins with a generated index of top-level classes, functions, and variables; each
@@ -143,6 +143,7 @@ results and [architecture](docs/architecture.md) for stage invariants and comple
 - [Testing and validation report](docs/testing-and-validation.md)
 - [References](docs/references.md)
 - [Architecture decision records](docs/adr/)
+- [Latest maintenance audit](docs/reports/maintenance-audit-2026-09-18.md)
 
 ## License
 
