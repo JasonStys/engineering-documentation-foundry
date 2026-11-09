@@ -69,3 +69,9 @@
 | `docs/adr/0001-deterministic-static-pipeline.md` | Decision to use a deterministic static build architecture. |
 | `.github/workflows/ci.yml` | Multi-version tests, lint, types, build, audit, and evidence upload. |
 | `.github/dependabot.yml` | Weekly Python and GitHub Actions update checks. |
+# Revision review addition
+
+`src/docfoundry/comparison.py` loads bounded canonical files, rejects ambiguous schemas/identities,
+separates content/revision/provenance changes and writes escaped cited HTML/JSON review dossiers.
+`tests/test_comparison.py` exercises real CLI/publication journeys and independent safety, schema,
+determinism and hostile-input oracles. See [review workflow](revision-review.md).
