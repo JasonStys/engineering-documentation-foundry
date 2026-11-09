@@ -1,0 +1,12 @@
+{
+  "report_version": 1,
+  "repository": "engineering-documentation-foundry",
+  "date": "2026-11-09",
+  "scope": "Local canonical corpus revision review; hosted Python matrix remains pending coordinator validation",
+  "tests": { "full_passed": 37, "new_comparison_cases": 12, "final_renderer_subset_passed": 12, "branch_inclusive_coverage_percent": 95.65, "coverage_gate_percent": 90 },
+  "quality": { "ruff_format": "passed", "ruff_lint": "passed", "strict_mypy": "passed", "sdist_wheel": "passed", "pip_check": "passed", "known_dependency_vulnerabilities": 0 },
+  "real_synthetic_corpus": { "pdf_sources": 8, "topics": 24, "changed": 1, "unchanged": 23, "review_gate_exit_code": 2 },
+  "actual_browser": { "engine": "chromium", "viewport_width": 390, "readable_before_after_notices": true, "source_citations": true, "horizontal_overflow": false, "external_http_requests": 0 },
+  "bounds": { "bytes_per_input": 16777216, "topics_per_input": 10000, "existing_output_overwrite": false },
+  "limitations": ["No heuristic rename or semantic safety equivalence", "Canonical fingerprints are not raw PDF hashes or registry signatures", "A write failure may leave a partial fresh review directory", "No hosted Actions triggered by worker; Python 3.11/3.12/3.13 matrix remains coordinated CI"]
+}

@@ -39,6 +39,10 @@ its source. This project treats migration as a controlled build:
   focus styling, and visible image-review findings.
 - **Inspectable failures:** blocked builds still commit canonical data, JSON/Markdown reports, and
   a manifest, but never publish the HTML site.
+- **Revision review:** compare two canonical corpora before approval. A deterministic HTML/JSON
+  dossier separates added, removed, changed and unchanged topics, distinguishes content edits from
+  revision/provenance changes, and flags added, removed, changed or relocated safety notices with
+  full before/after source citations. Existing publications are never modified.
 - **Automated quality:** unit, property, integration, fault, repository-policy, and performance
   tests run alongside linting, formatting, type checking, packaging, and dependency audit.
 
@@ -62,6 +66,23 @@ docfoundry build examples/source-registry.yaml --output build/demo --overwrite
 
 Exit code `0` means published, `2` means review artifacts were written but publication was blocked,
 and `1` means configuration or operational failure.
+
+## Review a documentation revision
+
+Build the baseline and candidate into separate destinations, then compare their canonical files:
+
+```bash
+docfoundry compare build/baseline/canonical/topics.json build/candidate/canonical/topics.json \
+  --output build/revision-review --fail-on-change
+```
+
+Open `build/revision-review/comparison.html` to read both versions, safety notices and source
+coordinates; `comparison.json` contains the same machine-readable dossier. The output must be a
+fresh directory with an existing parent. `--fail-on-change` returns `2` when any topic, revision or
+provenance differs, enabling an explicit reviewer gate; without it a successful comparison returns
+`0`. This does not approve a release or infer that changed instructions are safe. Renames appear as
+removed/added topics, and blocked-build canonical data can be reviewed without publishing its site.
+See [revision review](docs/revision-review.md) and [observed validation](docs/reports/practical-workflows-2026-11-09.md).
 
 ## Output contract
 
@@ -98,6 +119,7 @@ do not stop publication because they require human review rather than fabricated
 | `src/docfoundry/publisher.py`   | Autoescaped Jinja templates and accessible semantic HTML/CSS generation.                       |
 | `src/docfoundry/pipeline.py`    | End-to-end orchestration, failure capture, manifests, safe overwrite, and atomic commit.       |
 | `src/docfoundry/cli.py`         | Testable `build` command and stable process exit codes.                                        |
+| `src/docfoundry/comparison.py` | Bounded strict corpus loading, deterministic revision comparison, cited HTML/JSON review and optional change gate. |
 | `tools/generate_fixtures.py`    | Recreates the eight original synthetic reference PDFs.                                         |
 | `tools/export_schemas.py`       | Exports public registry and migration-report JSON Schemas.                                     |
 | `tools/update_symbol_index.py`  | Maintains line-accurate module symbol indexes in code headers.                                 |

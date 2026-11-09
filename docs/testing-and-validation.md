@@ -54,3 +54,8 @@ python -m build
 pip-audit
 docfoundry build examples/source-registry.yaml --output build/reference
 ```
+# Revision review validation
+
+The corpus reviewer adds independent content/revision/provenance/safety, bounds and CLI journeys.
+See [observed 2026-11-09 results](reports/practical-workflows-2026-11-09.md) and the
+[review interpretation](revision-review.md). Coverage thresholds and publication gates remain intact.
