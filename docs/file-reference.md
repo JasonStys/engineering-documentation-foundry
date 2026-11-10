@@ -53,6 +53,7 @@
 | `tests/test_pipeline.py` | Full corpus, deterministic output, blocked runs, overwrite, and CLI. |
 | `tests/test_performance.py` | End-to-end reference-corpus performance budget. |
 | `tests/test_repository_quality.py` | Neutrality, docs, code headers/docstrings, and secure CI policy. |
+| `tests/test_codeql_policy.py` | Actual YAML analysis contract and twenty unsafe semantic configuration mutations. |
 | `tests/fixtures/malformed.pdf` | Intentionally invalid parser-failure input. |
 
 ## Project documentation and automation
@@ -68,6 +69,7 @@
 | `docs/references.md` | Primary technical and standards sources. |
 | `docs/adr/0001-deterministic-static-pipeline.md` | Decision to use a deterministic static build architecture. |
 | `.github/workflows/ci.yml` | Multi-version tests, lint, types, build, audit, and evidence upload. |
+| `.github/workflows/codeql.yml` | Python and Actions security-extended analysis, safe event triggers, bounded jobs and scoped SARIF upload. |
 | `.github/dependabot.yml` | Weekly Python and GitHub Actions update checks. |
 # Revision review addition
 

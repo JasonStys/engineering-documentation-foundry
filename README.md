@@ -1,6 +1,7 @@
 # Engineering Documentation Foundry
 
 [![CI](https://github.com/JasonStys/engineering-documentation-foundry/actions/workflows/ci.yml/badge.svg)](https://github.com/JasonStys/engineering-documentation-foundry/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/JasonStys/engineering-documentation-foundry/actions/workflows/codeql.yml/badge.svg)](https://github.com/JasonStys/engineering-documentation-foundry/actions/workflows/codeql.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-3776AB.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
@@ -11,6 +12,13 @@ secure CI, and reviewable failure handling.
 
 All example manuals are original synthetic fixtures. The pipeline does not call an AI model or
 external service, so a source corpus can be rebuilt and audited offline.
+
+The separate [CodeQL workflow](.github/workflows/codeql.yml) analyzes Python and GitHub Actions
+with `security-extended` queries on main pushes, pull requests, weekly schedules and manual requests.
+Findings are processed in GitHub's **Security → Code scanning** view. This static analysis complements
+the existing parser, path-boundary, HTML-escaping, publication, revision-review and dependency tests;
+it does not certify PDF safety or migrated technical meaning. See [the security model](docs/security-model.md#code-scanning)
+and [validation record](docs/reports/codeql-2026-11-09.md).
 
 ## Why this project exists
 

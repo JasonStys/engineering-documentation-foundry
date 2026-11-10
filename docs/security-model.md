@@ -11,8 +11,8 @@
 ## Trust boundaries
 
 Registry and PDF content are untrusted input. The registry parent is the source filesystem boundary.
-Generated files cross into a reviewer-controlled output directory. CI runs third-party actions but
-receives read-only repository permissions.
+Generated files cross into a reviewer-controlled output directory. Normal validation receives
+read-only repository permissions; only the isolated CodeQL analysis jobs may upload security events.
 
 ## Threats and controls
 
@@ -27,7 +27,27 @@ receives read-only repository permissions.
 | Partial output | Sibling staging directory followed by atomic rename. |
 | Accidental overwrite | Fail closed unless `--overwrite`; reject broad destinations. |
 | CI dependency drift | Full commit SHA pins for actions and dependency audit on every CI run. |
-| Excessive CI authority | Workflow default is `contents: read`; no write token or deployment secret. |
+| Excessive CI authority | Workflow default is `contents: read`; only CodeQL jobs have `security-events: write` for SARIF, with no build/install steps or deployment secret. |
+
+## Code scanning
+
+`.github/workflows/codeql.yml` runs separate `python` and `actions` jobs with no-build extraction,
+`security-extended` queries and a 20-minute deadline. Main pushes, main-targeting pull requests,
+weekly schedules and manual requests trigger analysis. There are no source exclusions, ignored
+queries, suppressed findings or privileged `pull_request_target` events. Actions are pinned to full
+commits and checkout does not retain credentials. Only analysis jobs receive `security-events:
+write`; the default token remains read-only, and those jobs never install or execute this project.
+Dependency/extractor caches and database uploads are disabled. Processed SARIF results are stored
+in GitHub's Code scanning service without an additional Actions artifact upload.
+
+Review both languages, exact source revision, extraction warnings and open alerts after the
+workflow finishes. A green execution means extraction, queries and upload processing succeeded;
+it does not guarantee zero alerts or prove vulnerability absence. Trace reported paths to determine
+whether an issue is real, add a meaningful regression for confirmed defects, and rerun CodeQL and
+the normal tests. PDF binary behavior, third-party native parser internals, Jinja template coverage,
+technical correctness, operating-system isolation and human approval are not established by this
+Python/Actions scan. Existing defensive parsing, escaping, resource-bound, publication and audit
+checks remain required. See [the setup and validation record](reports/codeql-2026-11-09.md).
 
 ## Residual risk
 
