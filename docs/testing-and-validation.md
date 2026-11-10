@@ -59,3 +59,14 @@ docfoundry build examples/source-registry.yaml --output build/reference
 The corpus reviewer adds independent content/revision/provenance/safety, bounds and CLI journeys.
 See [observed 2026-11-09 results](reports/practical-workflows-2026-11-09.md) and the
 [review interpretation](revision-review.md). Coverage thresholds and publication gates remain intact.
+
+## Security analysis
+
+The independent CodeQL workflow analyzes Python and Actions with no-build extraction and
+`security-extended`. It is triggered by main pushes, main-targeting PRs, weekly schedules and manual
+requests. Repository-policy tests parse the actual YAML and enforce safe triggers, SHA pins, bounded
+jobs, a read-only default and upload-only authority. The [scan record](reports/codeql-2026-11-09.md)
+separates local verification from hosted extraction/query/upload evidence. Existing Python
+multi-version, coverage, distribution, parser, publication and dependency gates remain required.
+Static analysis does not establish PDF isolation, native parser safety, rendered-template coverage
+or migrated engineering meaning, and a successful workflow is not a claim of zero alerts.
