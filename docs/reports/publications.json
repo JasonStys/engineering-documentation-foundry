@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "project": "engineering-documentation-foundry",
+  "author": "Jason Stys",
+  "editionDate": "2026-11-09",
+  "sourceBaseline": "dd47b617bca4ffa678b076b4963029b67faa50a5",
+  "sourceUrl": "https://github.com/JasonStys/engineering-documentation-foundry/tree/dd47b617bca4ffa678b076b4963029b67faa50a5",
+  "functionalEvidenceBaseline": "dd47b617bca4ffa678b076b4963029b67faa50a5",
+  "evidenceObservedAt": "2026-11-10T06:15:17.239369+00:00",
+  "workflowEvidence": [
+    {
+      "conclusion": "success",
+      "databaseId": 42766243649,
+      "event": "push",
+      "headSha": "dd47b617bca4ffa678b076b4963029b67faa50a5",
+      "name": "CI",
+      "status": "completed",
+      "url": "https://github.com/JasonStys/engineering-documentation-foundry/actions/runs/42766243649"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 42766243544,
+      "event": "push",
+      "headSha": "dd47b617bca4ffa678b076b4963029b67faa50a5",
+      "name": "CodeQL",
+      "status": "completed",
+      "url": "https://github.com/JasonStys/engineering-documentation-foundry/actions/runs/42766243544"
+    }
+  ],
+  "summary": "Compare canonical corpus revisions by stable identity, highlighting source-cited content and safety-warning changes in HTML/JSON.",
+  "rationale": "Gives publication reviewers a precise change review before shipping revised documentation.",
+  "limitations": [
+    "Comparison matches stable identities without inferring semantic renames or equivalent safety meaning.",
+    "Operational write failures can leave a partial review directory; source documents and published output are not changed by comparison.",
+    "Source citations and warning diffs support human review, not a certification that a revised procedure is safe."
+  ],
+  "documents": [
+    {
+      "filename": "project-guide.docx",
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "bytes": 43598,
+      "sha256": "3973681d562ee8c793c93e2775009d530f41b4f83fcb54256eecc064106fffb7",
+      "sourceBaseline": "dd47b617bca4ffa678b076b4963029b67faa50a5",
+      "visualReview": {
+        "approved": true,
+        "method": "Every rendered page individually viewed at readable original resolution",
+        "pageCount": 5,
+        "renderedPageSha256": {
+          "page-1.png": "f7da7c414552162825a7db93961777c44e86b43c15aac1746ef699cc1fb9cc40",
+          "page-2.png": "12fd4a18100e1f86cd442a8d35f718dc55f9ab997c072c73e3b31579582093bc",
+          "page-3.png": "d108c2db68660a0c0d8cbf7acfc1a073c5b386ab7f8445c9dcd5353bf118439b",
+          "page-4.png": "e2a6d6fc4e4d4028910e3d5e378bd9456ab8d3db367825263c26a07bf5a2bb37",
+          "page-5.png": "53a5d0090344ce8578acf76ca7bdbf2f6b418094a8e79693756015c7589484db"
+        }
+      }
+    },
+    {
+      "filename": "validation-review.docx",
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "bytes": 41882,
+      "sha256": "16b553791e93dc3529a7f22e31db307d2768ee3748470f8721cfda59995bffdd",
+      "sourceBaseline": "dd47b617bca4ffa678b076b4963029b67faa50a5",
+      "visualReview": {
+        "approved": true,
+        "method": "Every rendered page individually viewed at readable original resolution",
+        "pageCount": 3,
+        "renderedPageSha256": {
+          "page-1.png": "310e6d6115c28aeafc87a377d882720ae4cbcbbf94a1b65ab7df1b66e5de16f2",
+          "page-2.png": "042e3af8c62fc1e9370490ed43cf85e6593dbbc2e837f1dc552c2f3ac6ead841",
+          "page-3.png": "8d6c2437d555b9f1b745026580bb5776b5bad8d034d200fb6c9846c31bfdb21d"
+        }
+      }
+    },
+    {
+      "filename": "validation-evidence.xlsx",
+      "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "bytes": 7365,
+      "sha256": "fa6b016b4d6c9ffeae972dba49c7ab0cc31b35eba260979238b21eec23dee034",
+      "sourceBaseline": "dd47b617bca4ffa678b076b4963029b67faa50a5",
+      "visualReview": {
+        "approved": true,
+        "tabsReviewed": [
+          "Test sources",
+          "Workflow evidence"
+        ],
+        "previewSha256": {
+          "Workflow evidence": "4c30efcaf593a8d78ceb74a217bd94113dd2bcbb9e033ce0e80d917bd442748e",
+          "Test sources": "8936c38bbae4c98e4ec9a5cabe585c3a2e21a27b6d9d4f20036e8933a9bc7c9b"
+        },
+        "tables": [
+          {
+            "path": "xl/tables/table1.xml",
+            "name": "WorkflowEvidence",
+            "range": "A7:D9",
+            "columns": 4,
+            "autoFilter": true,
+            "filterButtonsEnabled": true
+          },
+          {
+            "path": "xl/tables/table2.xml",
+            "name": "TestSources",
+            "range": "A7:C17",
+            "columns": 3,
+            "autoFilter": true,
+            "filterButtonsEnabled": true
+          }
+        ],
+        "formulaCount": 4,
+        "failureSensitivityReceiptPassed": true,
+        "formulaErrors": []
+      }
+    }
+  ],
+  "scope": "Reviewed documentation editions of the cited source. Checksums identify bytes, not authorship. Historical measurements retain their own dates; integration CI must be checked separately."
+}

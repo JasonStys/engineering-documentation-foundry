@@ -77,3 +77,14 @@
 separates content/revision/provenance changes and writes escaped cited HTML/JSON review dossiers.
 `tests/test_comparison.py` exercises real CLI/publication journeys and independent safety, schema,
 determinism and hostile-input oracles. See [review workflow](revision-review.md).
+
+## Reviewed documentation editions
+
+| File | Purpose |
+| --- | --- |
+| `docs/handbook.md` | Organized usage, architecture, security and validation entry point. |
+| `docs/reports/project-guide.docx` | Readable project and developer guide tied to the cited source. |
+| `docs/reports/validation-review.docx` | Full-main static-analysis observations and separately dated local validation. |
+| `docs/reports/validation-evidence.xlsx` | Filterable workflow and test-source Tables with recalculated outcome counts. |
+| `docs/reports/publications.json` | Exact package hashes, approved page/tab identities and source/evidence baselines. |
+| `docs/reports/documentation-refresh-2026-11-09.md` | Completed editorial/package checks and documentation interpretation limits. |
