@@ -25,7 +25,7 @@ consumer; review the resulting `RELEASE.json`, archive digest and matching workf
 | Check | Recorded observation |
 | --- | --- |
 | Full Python suite | 290 tests passed through the actual console `pytest` entrypoint, including exact setup-disclosure, archive-inflation, environment-binding and both Windows runtime-library identity regressions. |
-| Combined statement/branch coverage | 91.27% across both `docfoundry` and `foundry_desktop`; original 90% floor retained, no new exclusions. |
+| Combined statement/branch coverage | 91.24% across both `docfoundry` and `foundry_desktop`; original 90% floor retained, no new exclusions. |
 | Actual runtime notice contracts | All 13 cases passed in one fresh stable-descriptor interpreter, separately counted from the parent suite; no retries/skips. |
 | Strict types | All 27 source modules passed `mypy src`. |
 | Formatting/lint | Ruff rules and source-header/symbol/docstring requirements retained. |
@@ -139,6 +139,16 @@ complete exact provider, filename, byte count, ABI, SHA and terms lines. Six pos
 oracles reject a changed authority, URL suffix, length, missing ABI and nonzero setup exit. This
 does not replace the original separate URL/stream/hash/tree authorization in `parser_setup`, and
 no query exclusion or alert dismissal was introduced. Later scans must verify the corrected source.
+
+At checkpoint `228575fbd8abf1d79c5239b7b2a660b1592887d6`, all three actual native
+Windows/Linux/macOS jobs passed their unchanged compiled GUI/PDF/retention/Exit consumer. The three
+processed PR CodeQL categories had zero results, with 50 Python, 103 JavaScript/TypeScript and 23
+Actions rules and no processing error/warning. These were PR analyses, not full-main clearance.
+The original source matrix then exposed a separate fixture error: the four Windows DLL identity
+tests modelled `sys.platform` on Linux without supplying Windows's required `SYSTEMROOT` environment.
+The fixture now supplies an inert absolute root and independently checks the restricted child PATH;
+no fixture DLL/System32 is executed. The full local console suite passed 290 tests at 91.24% after
+that correction. Latest-source hosted gates still must pass; the earlier failed matrix is retained.
 
 ## Required clean/hosted gate and reproduction
 
