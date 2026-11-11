@@ -39,3 +39,11 @@ glibc 2.28+ Linux x86-64 and macOS 11+ Apple Silicon. Unsupported CPU, OS or
 free-threaded ABI fails without downloading a fallback. Native builds require
 final Python 3.14.10 or a later 3.14 security patch. Original source CLI support
 on Python 3.11–3.13 remains separately tested.
+
+On Windows the app retains and verifies both the patched SDK's main Python DLL
+and its stable-ABI `python3.dll` stub. The official PyMuPDF wheel additionally
+depends on Microsoft's Visual C++ runtime. If that system prerequisite is absent,
+use Microsoft's supported redistributable rather than downloading loose DLLs.
+See the [upstream installation troubleshooting](https://pymupdf.readthedocs.io/en/latest/installation.html#problems-after-installation)
+and [Microsoft's supported runtime downloads](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist).
+The app does not install global runtimes or claim a clean-machine installer transaction.

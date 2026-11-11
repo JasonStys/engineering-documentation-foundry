@@ -24,8 +24,8 @@ consumer; review the resulting `RELEASE.json`, archive digest and matching workf
 
 | Check | Recorded observation |
 | --- | --- |
-| Full Python suite | 280 tests passed, including the bounded archive-inflation and post-setup environment-binding regressions. |
-| Combined statement/branch coverage | 91.17% across both `docfoundry` and `foundry_desktop`; original 90% floor retained, no new exclusions. |
+| Full Python suite | 284 tests passed, including bounded archive-inflation, post-setup environment binding and both Windows runtime-library identity regressions. |
+| Combined statement/branch coverage | 91.24% across both `docfoundry` and `foundry_desktop`; original 90% floor retained, no new exclusions. |
 | Actual runtime notice contracts | All 13 cases passed in one fresh stable-descriptor interpreter, separately counted from the parent suite; no retries/skips. |
 | Strict types | All 27 source modules passed `mypy src`. |
 | Formatting/lint | Ruff rules and source-header/symbol/docstring requirements retained. |
@@ -78,6 +78,15 @@ optional test dependencies. Runtime and pinned PyInstaller-compatibility graph t
 from that actual environment. The real frozen module/tree inventory independently refuses parser
 payloads and unreviewed developer modules. Loaded Tcl/Tk library notices use actual bytes or a
 narrowly version/source-bound reviewed distribution notice; no family-based substitute is made.
+
+The first clean minimal Windows archive exposed a real missing dependency before the app opened:
+the externally installed parser uses CPython's stable-ABI `python3.dll`, which was absent because
+the parser is intentionally not frozen. Packaging now explicitly collects that DLL from the same
+patched SDK, binds its actual SHA-256 in metadata and verifies it again before document access.
+The ordinary `python314.dll` retains its independent identity check. Four missing/substituted-DLL
+oracles exercise both paths. No parser binary was added to the app. The preserved failed setup is
+not reported as a successful package. Windows also needs Microsoft's supported Visual C++ runtime
+for the official parser wheel; this work does not claim a dependency-free clean-machine install.
 
 ## Failures preserved and corrections
 

@@ -106,6 +106,12 @@ def load() -> Resources:
             bounded(root / "python314.dll", 16 * 1024 * 1024)
         ).hexdigest() != identity.get("pythonRuntimeSha256"):
             raise ValueError("Native Python DLL differs from the verified patched runtime")
+        if sys.platform == "win32" and hashlib.sha256(
+            bounded(root / "python3.dll", 1024 * 1024)
+        ).hexdigest() != identity.get("pythonStableAbiSha256"):
+            raise ValueError(
+                "Native stable-ABI Python DLL differs from the verified patched runtime"
+            )
         command = [sys.executable, "--engine-job"]
     else:
         identity = {

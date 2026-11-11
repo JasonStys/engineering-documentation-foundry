@@ -252,6 +252,9 @@ def main() -> int:
     }
     if sys.platform == "win32":
         metadata["pythonRuntimeSha256"] = digest(Path(sys.base_prefix) / "python314.dll")
+        # The parser is intentionally not analysed/frozen, so its stable-ABI
+        # dependency is not discovered automatically by PyInstaller.
+        metadata["pythonStableAbiSha256"] = digest(Path(sys.base_prefix) / "python3.dll")
     identity = generated / "RELEASE.json"
     identity.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
     terms = generated / "RUNTIME_NOTICES.txt"
@@ -290,6 +293,8 @@ def main() -> int:
         command += ["--add-data", str(path) + ":" + destination]
     for name in EXAMPLES:
         command += ["--add-data", str(ROOT / "examples/sources" / name) + ":examples"]
+    if sys.platform == "win32":
+        command += ["--add-binary", str(Path(sys.base_prefix) / "python3.dll") + ":."]
     command += [str(ROOT / "launcher.py")]
     subprocess.run(
         command,
@@ -312,6 +317,10 @@ def main() -> int:
         require(
             digest(bundle / "_internal/python314.dll") == metadata["pythonRuntimeSha256"],
             "Collected Python differs from the patched SDK",
+        )
+        require(
+            digest(bundle / "_internal/python3.dll") == metadata["pythonStableAbiSha256"],
+            "Collected stable-ABI Python differs from the patched SDK",
         )
     shutil.copyfile(identity, bundle / "RELEASE.json")
     suffix = ".zip" if sys.platform == "win32" else ".tar.gz"
