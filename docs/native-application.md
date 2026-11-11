@@ -4,13 +4,19 @@ Created by Jason Stys. Source/support: [Engineering Documentation Foundry](https
 
 ## Start and choose a workspace
 
-The native build produces a **portable application archive**, not an installer transaction. Select
-the matching Windows AMD64 ZIP, Linux x86-64 tar.gz or macOS Apple Silicon tar.gz only after its
-release and exact-source checks are published. Verify the sidecar SHA-256, extract the complete
-archive into a fresh directory and launch `EngineeringDocumentationFoundry.exe` on Windows or
-`EngineeringDocumentationFoundry` on Linux/macOS. Keep all adjacent resources. Packages are unsigned;
-normal OS warnings and access rules still apply. A source branch or local candidate is not a
-published release. No 0.2.0 public download or PC installation is asserted by this source update.
+The [published 0.2.0 release](https://github.com/JasonStys/engineering-documentation-foundry/releases/tag/v0.2.0)
+contains a **Windows AMD64 portable ZIP**, not an installer transaction. Download its ZIP and
+SHA-256 sidecar, verify the digest, extract the complete archive into a fresh directory and launch
+`EngineeringDocumentationFoundry.exe`. Keep all adjacent resources and notices together. The
+package is unsigned, and a supported Microsoft Visual C++ runtime is required. Normal OS warnings
+and access rules still apply. Linux/macOS native packages passed hosted validation but are not
+public download assets in this release.
+
+The [four-page illustrated guide](reports/windows-application-guide-0.2.0.docx) and
+[installed validation](reports/installed-windows-0.2.0-2026-11-11.md) record independent download,
+real PDF workflows, retained history and normal exits at exact runtime source
+`fa0cf1a0132e56e2b0016207b3d5aecd08a29c2a`. Shortcut-target verification is separate from ordinary
+default-profile icon activation and OS browser opening, which were not independently exercised.
 
 On first launch, the real setup dialog displays the exact official PyMuPDF wheel, size, digest,
 ABI, provider and licensing information. Choose **Install verified PDF engine** or **Cancel without

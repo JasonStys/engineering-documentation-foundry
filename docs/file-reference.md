@@ -140,5 +140,13 @@ These are current source additions, separate from the historically hash-bound Of
 | `.github/workflows/desktop.yml` | Three genuine extracted application consumers, no publication authority or binary uploads. |
 | `docs/native-application.md` | Practical author/build/review/export/history/Exit workflows and supported boundaries. |
 | `docs/PDF_ENGINE_SETUP.md` | Actual dependency licensing, consent, provider/import and offline verification boundaries. |
-| `docs/releases/v0.2.0.md` | Current source candidate scope, without premature public release claims. |
+| `docs/releases/v0.2.0.md` | Published Windows release identity, actual installed acceptance and cross-OS validation limits. |
 | `docs/reports/native-application-2026-11-11.md` | Dated actual validation, observed failures/corrections and remaining proof limits. |
+
+## Current installed Windows documentation
+
+| File | Responsibility |
+| --- | --- |
+| `docs/reports/windows-application-guide-0.2.0.docx` | Four reviewed pages with actual installed screenshots, complete worked workflow, immutable source and operating limits. |
+| `docs/reports/windows-application-guide-0.2.0.json` | Word, image, immutable source and reviewed page digests, plus public release and exact-source workflow links. |
+| `docs/reports/installed-windows-0.2.0-2026-11-11.md` | Dated independent download, three normal exits, retained builds/projects, native menu and scope observations. |
