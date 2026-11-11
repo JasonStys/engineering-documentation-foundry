@@ -380,11 +380,27 @@ try {
   console.log("Real captured save/context and in-flight typing guards passed");
   assert.equal(await page.locator("script:not([src])").count(), 0);
   await page.setViewportSize({ width: 320, height: 900 });
+  const geometry = await page.evaluate(() => ({
+    width: innerWidth,
+    scrollWidth: document.documentElement.scrollWidth,
+    overflowing: [...document.querySelectorAll("body *")]
+      .filter((item) => {
+        const box = item.getBoundingClientRect();
+        return box.width && (box.right > innerWidth || box.left < 0);
+      })
+      .slice(0, 24)
+      .map((item) => ({
+        tag: item.tagName,
+        id: item.id,
+        class: item.className,
+        width: item.getBoundingClientRect().width,
+        right: item.getBoundingClientRect().right,
+      })),
+  }));
   assert.equal(
-    await page.evaluate(
-      () => document.documentElement.scrollWidth <= innerWidth,
-    ),
+    geometry.scrollWidth <= geometry.width,
     true,
+    JSON.stringify(geometry),
   );
   console.log("Mobile geometry passed; evaluating actual Axe accessibility");
   const accessibility = await new AxeBuilder({ page })

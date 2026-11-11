@@ -49,6 +49,7 @@ packages = ["src/docfoundry", "src/foundry_desktop"]
 
 [tool.pytest.ini_options]
 addopts = "--strict-config --strict-markers -ra"
+pythonpath = ["."]
 testpaths = ["tests"]
 markers = [
   "performance: deterministic performance-bound checks",

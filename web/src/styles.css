@@ -10,6 +10,7 @@
   font-size: 16px;
   line-height: 1.55;
   color-scheme: light;
+  overflow-wrap: anywhere;
 }
 * {
   box-sizing: border-box;
@@ -377,7 +378,7 @@ a {
 }
 @media (max-width: 900px) {
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .grid > .card {
     margin-top: 10px;

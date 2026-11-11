@@ -135,6 +135,7 @@ These are current source additions, separate from the historically hash-bound Of
 | `tests/test_runtime_notices.py`, `tests/runtime_notice_cases.py` | Mandatory isolated execution of all thirteen actual Tcl/Tk notice contracts, without retries/skips. |
 | `tests/test_portable_archive.py` | Real ZIP/tar path, duplicate, link, expansion and extraction fixtures; no member execution. |
 | `tests/test_native_contract.py` | Version, real parser/developer-module exclusion and meaningful unsafe CI mutation negatives. |
+| `tests/test_setup_disclosure.py` | Exact full provider/terms/size/ABI/digest disclosure receipts and misleading URL or failed-setup negatives. |
 | `requirements*.in`, `requirements*.lock` | Separate exact full-hash runtime, development and PyInstaller build graphs. |
 | `.github/workflows/desktop.yml` | Three genuine extracted application consumers, no publication authority or binary uploads. |
 | `docs/native-application.md` | Practical author/build/review/export/history/Exit workflows and supported boundaries. |
