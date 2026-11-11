@@ -11,4 +11,4 @@ from docfoundry.models import MigrationReport
 from docfoundry.pipeline import PipelineConfig, run_pipeline
 
 __all__ = ["MigrationReport", "PipelineConfig", "run_pipeline"]
-__version__ = "0.1.0"
+__version__ = "0.2.0"

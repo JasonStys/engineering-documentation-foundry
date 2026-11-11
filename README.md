@@ -10,10 +10,27 @@ provenance-linked canonical topics and an accessible static HTML site. It is a c
 demonstration of document engineering, defensive parsing, data contracts, test automation,
 secure CI, and reviewable failure handling.
 
+The **0.2.0 native application** adds a real local authoring workspace around that same engine:
+upload your PDFs, declare their revisions and permissions, edit extraction limits, save an explicit
+snapshot, build it, search cited canonical content, preview original formatting, download exact
+artifacts and compare actual saved revisions. Projects, source bytes and immutable build evidence
+survive a normal restart. Prepared manuals are optional editable inputs, rather than a separate demo.
+The original CLI and deterministic publication gates remain available.
+
+Native packaging is being validated in [Desktop application validation](.github/workflows/desktop.yml).
+This source update does not claim a published installer or completed PC installation. See the
+[native application guide](docs/native-application.md) and [dated validation](docs/reports/native-application-2026-11-11.md).
+
+The authored source is MIT licensed. The native archive excludes PyMuPDF/MuPDF binaries; first-run
+setup explains their **AGPL v3 / Artifex commercial** licensing and asks Install or Cancel before any
+workspace or document opens. Only the exact pinned official wheel is downloaded; later work is
+offline. This technical setup design does not certify licensing compliance or supply a commercial
+license. Read [PDF engine setup](docs/PDF_ENGINE_SETUP.md).
+
 All example manuals are original synthetic fixtures. The pipeline does not call an AI model or
 external service, so a source corpus can be rebuilt and audited offline.
 
-The separate [CodeQL workflow](.github/workflows/codeql.yml) analyzes Python and GitHub Actions
+The separate [CodeQL workflow](.github/workflows/codeql.yml) analyzes Python, TypeScript/JavaScript and GitHub Actions
 with `security-extended` queries on main pushes, pull requests, weekly schedules and manual requests.
 Findings are processed in GitHub's **Security → Code scanning** view. This static analysis complements
 the existing parser, path-boundary, HTML-escaping, publication, revision-review and dependency tests;
@@ -35,6 +52,12 @@ its source. This project treats migration as a controlled build:
 
 ## Major features
 
+- **Actual editable application:** upload and download exact source PDFs, author a source registry,
+  validate fields separately from PDF processing and explicitly save/build a revision.
+- **Durable review workspace:** literal title filters, outcome filters, canonical text/source/type
+  search, exact HTML previews, complete project import/export and original cited revision comparison.
+- **Honest transitions:** optimistic revision conflicts, stale-response protection while editing,
+  no automatic history deletion and normal Exit that retains ownership until accepted work ends.
 - **Deterministic builds:** timestamps are excluded from generated data; identical inputs create
   byte-identical artifacts.
 - **Traceability:** every canonical block retains source ID, revision, page, bounding box, and
@@ -56,11 +79,15 @@ its source. This project treats migration as a controlled build:
 
 ## Quick start
 
+For the graphical workflow and portable archive instructions, start with
+[the native application guide](docs/native-application.md). For CLI development:
+
 ```bash
 python -m venv .venv
 # Linux/macOS: source .venv/bin/activate
 # Windows PowerShell: .venv\Scripts\Activate.ps1
-python -m pip install -e ".[dev]"
+python -m pip install --require-hashes -r requirements-dev.lock
+python -m pip install --no-deps --no-build-isolation -e .
 docfoundry build examples/source-registry.yaml --output build/demo
 ```
 

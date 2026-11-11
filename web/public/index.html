@@ -1,0 +1,419 @@
+<!-- File: Jason Stys's actual editable PDF publication and cited revision-review application. -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Engineering Documentation Foundry | Jason Stys</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <script type="module" src="/assets/app.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#author">Skip to authoring</a>
+    <header>
+      <p class="eyebrow">Jason Stys / Engineering tools</p>
+      <h1>Documentation Foundry</h1>
+      <p class="lead">
+        Turn your PDF sources into traceable, validated documentation. Inspect
+        the evidence before sharing the result.
+      </p>
+      <nav aria-label="Application sections">
+        <a href="#author">Author</a><a href="#review">Review</a
+        ><a href="#compare">Compare revisions</a><a href="#help">Help</a
+        ><button id="quit" type="button">Quit application</button>
+      </nav>
+      <p id="identity" class="identity">Verifying the owned application…</p>
+    </header>
+    <main>
+      <p id="status" role="status" aria-live="polite">
+        Connecting to the actual local owner…
+      </p>
+      <p id="error" role="alert" hidden></p>
+      <section id="author" aria-labelledby="author-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">1 / Author the source set</p>
+            <h2 id="author-heading">Your publication project</h2>
+          </div>
+          <button id="new-project" type="button">New draft</button>
+        </div>
+        <p>
+          Upload actual PDFs, add their source declarations, then validate and
+          save a snapshot. Builds always use the explicit saved revision.
+        </p>
+        <div class="grid">
+          <article class="card" aria-labelledby="library-heading">
+            <h3 id="library-heading">PDF library</h3>
+            <label for="pdf-file">Add a local PDF (8 MiB maximum)</label
+            ><input id="pdf-file" type="file" accept=".pdf,application/pdf" />
+            <p class="hint">
+              Source bytes stay in this workspace. Duplicate bytes share one
+              SHA-256 identity.
+            </p>
+            <ul
+              id="library"
+              class="records"
+              aria-label="Uploaded source PDFs"
+            ></ul>
+            <details>
+              <summary>Use optional original synthetic sources</summary>
+              <p>
+                These are editable inputs to the same real pipeline, rather than
+                precomputed output.
+              </p>
+              <label for="example">Prepared source set</label
+              ><select id="example">
+                <option value="calibration">Calibration manual</option>
+                <option value="maintenance">
+                  Pump maintenance and checklist
+                </option>
+                <option value="all">All eight reference manuals</option>
+              </select>
+              <button id="create-example" type="button">
+                Create editable example project
+              </button>
+            </details>
+            <details open>
+              <summary>Add a source declaration</summary>
+              <form id="source-form">
+                <label for="source-pdf">Uploaded PDF</label
+                ><select id="source-pdf" required></select>
+                <div class="field-grid">
+                  <label
+                    >Stable source ID<input
+                      id="source-id"
+                      value="source-1"
+                      required
+                      pattern="[a-z0-9][a-z0-9._-]{1,63}"
+                      maxlength="64"
+                  /></label>
+                  <label
+                    >Revision<input
+                      id="source-revision"
+                      value="1.0"
+                      required
+                      maxlength="80"
+                  /></label>
+                  <label
+                    >Product / model<input
+                      id="source-model"
+                      required
+                      maxlength="120"
+                  /></label>
+                  <label
+                    >Responsible owner / team<input
+                      id="source-owner"
+                      required
+                      maxlength="120"
+                  /></label>
+                  <label
+                    >Source license / permission<input
+                      id="source-license"
+                      required
+                      maxlength="120"
+                  /></label>
+                  <label
+                    >Declared workflow status<select id="source-state">
+                      <option value="queued">Queued</option>
+                      <option value="in-review" selected>In review</option>
+                      <option value="approved">Approved metadata</option>
+                    </select></label
+                  >
+                </div>
+                <label class="check"
+                  ><input id="pin-checksum" type="checkbox" checked /> Pin the
+                  expected checksum to the selected actual bytes</label
+                >
+                <p class="hint">
+                  Declared status is metadata. It cannot bypass publication
+                  checks or approve technical meaning.
+                </p>
+                <button type="submit" id="append-source">
+                  Add declaration to this draft
+                </button>
+              </form>
+            </details>
+          </article>
+          <article class="card" aria-labelledby="editor-heading">
+            <h3 id="editor-heading">Editable project and registry</h3>
+            <p id="draft-state" class="badge">New unsaved draft</p>
+            <label for="editor">Project input JSON</label
+            ><textarea
+              id="editor"
+              rows="22"
+              spellcheck="false"
+              aria-describedby="editor-help"
+            ></textarea>
+            <p id="editor-help" class="hint">
+              Edit the title, source metadata/order and extraction limits here.
+              Remove unwanted source entries. Each project supports 1–12
+              declarations and 32 MiB of unique PDF bytes.
+            </p>
+            <div class="actions">
+              <button id="validate" type="button">
+                Validate fields and references</button
+              ><button id="save" type="button" class="primary">
+                Save project snapshot</button
+              ><button id="build" type="button" disabled>
+                Build saved revision
+              </button>
+            </div>
+            <p id="validation" class="hint">
+              Field validation does not process PDFs or certify their contents.
+            </p>
+            <details>
+              <summary>Extraction settings and source identity</summary>
+              <p>
+                <code>max_pages</code>: 1–100 per PDF;
+                <code>max_blocks_per_page</code>: 1–5,000;
+                <code>heading_ratio</code>: 1.05–3. These are limits, not silent
+                truncation options. Exceeding a limit blocks that source.
+              </p>
+              <p>
+                Keep the same source ID when revising a manual. Changing an ID
+                appears as removal/addition in revision review. Expected SHA-256
+                is optional; actual uploaded bytes are always identified
+                independently.
+              </p>
+            </details>
+            <div class="actions">
+              <button id="export-project" type="button" disabled>
+                Download saved project with PDFs</button
+              ><button id="delete-project" type="button" disabled>
+                Remove selected project
+              </button>
+            </div>
+            <label for="import-project"
+              >Import a complete exported project JSON</label
+            ><input
+              id="import-project"
+              type="file"
+              accept=".json,application/json"
+            />
+            <p class="hint">
+              Imports create a new project. Supplied reports or output claims
+              are never adopted. The portable file contains the actual PDFs;
+              review it before sharing.
+            </p>
+          </article>
+        </div>
+        <article class="card">
+          <h3>Saved projects</h3>
+          <div class="search">
+            <label
+              >Literal title search<input
+                id="project-search"
+                type="search"
+                maxlength="100" /></label
+            ><button id="refresh-projects" type="button">Find projects</button>
+          </div>
+          <ul id="projects" class="records" aria-label="Saved projects"></ul>
+        </article>
+      </section>
+      <section id="review" aria-labelledby="review-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">2 / Inspect actual output</p>
+            <h2 id="review-heading">Build evidence and preview</h2>
+          </div>
+        </div>
+        <p>
+          Published means the original mechanical checks allowed HTML
+          generation. It does not replace engineering, safety, licensing or
+          accessibility review.
+        </p>
+        <div class="grid">
+          <article class="card">
+            <h3>Retained build history</h3>
+            <label for="build-search">Literal project title search</label
+            ><input id="build-search" type="search" maxlength="100" /><label
+              for="build-status"
+              >Publication outcome</label
+            ><select id="build-status">
+              <option value="">All outcomes</option>
+              <option value="published">Generated site</option>
+              <option value="blocked">Publication blocked</option></select
+            ><button id="refresh-builds" type="button">Find builds</button>
+            <ul id="builds" class="records" aria-label="Saved builds"></ul>
+          </article>
+          <article class="card" id="selected-panel">
+            <h3>Selected immutable build</h3>
+            <p id="selected">
+              Choose a saved build. Editing a project never rewrites an earlier
+              result.
+            </p>
+            <div id="build-summary"></div>
+            <div class="actions">
+              <button id="export-build" disabled type="button">
+                Download exact artifact ZIP</button
+              ><button id="export-evidence" disabled type="button">
+                Download build evidence JSON</button
+              ><button id="use-input" disabled type="button">
+                Use input as a new draft</button
+              ><button id="delete-build" disabled type="button">
+                Remove this build
+              </button>
+            </div>
+            <details>
+              <summary>Complete build record and engine diagnostics</summary>
+              <pre
+                id="evidence"
+                role="region"
+                aria-label="Complete immutable build evidence"
+                tabindex="0"
+              ></pre>
+            </details>
+          </article>
+        </div>
+        <article class="card">
+          <h3>Find canonical content</h3>
+          <div class="field-grid">
+            <label
+              >Text, value or notice<input
+                id="topic-search"
+                type="search"
+                maxlength="100" /></label
+            ><label
+              >Source ID<select id="topic-source">
+                <option value="">All sources</option>
+              </select></label
+            ><label
+              >Topic type<select id="topic-kind">
+                <option value="">All types</option>
+                <option value="concept">Concept</option>
+                <option value="task">Task</option>
+                <option value="reference">Reference</option>
+                <option value="troubleshooting">Troubleshooting</option>
+              </select></label
+            >
+          </div>
+          <button id="find-topics" type="button">Filter this build</button>
+          <p id="topic-count" role="status">No selected build.</p>
+          <div id="topics" class="topic-list"></div>
+        </article>
+        <article class="card" id="preview-panel">
+          <h3>Preview original generated formatting</h3>
+          <label for="preview-path">Original HTML artifact</label
+          ><select id="preview-path"></select
+          ><button id="show-preview" type="button" disabled>
+            Open sandboxed preview
+          </button>
+          <p class="hint">
+            The preview keeps original text, tables, notices and navigation.
+            Scripts, forms, popups and external resources are blocked. A blocked
+            build has review reports and canonical data, rather than a published
+            site.
+          </p>
+          <iframe
+            id="preview"
+            title="Original publication artifact preview"
+            sandbox="allow-same-origin"
+            hidden
+          ></iframe
+          ><label for="artifact-path">Any original artifact</label
+          ><select id="artifact-path"></select
+          ><button id="download-artifact" type="button" disabled>
+            Download exact selected artifact
+          </button>
+        </article>
+      </section>
+      <section id="compare" aria-labelledby="compare-heading">
+        <p class="eyebrow">3 / Review a revision</p>
+        <h2 id="compare-heading">Compare actual saved corpora</h2>
+        <p>
+          The original comparator separates content, revision and provenance
+          changes, including added, removed, changed or relocated safety
+          notices. This review does not approve a release.
+        </p>
+        <article class="card">
+          <div class="field-grid">
+            <label>Before build<select id="before-build"></select></label
+            ><label>After build<select id="after-build"></select></label>
+          </div>
+          <button id="compare-builds" type="button">
+            Generate cited revision review
+          </button>
+          <div id="comparison-summary"></div>
+          <div id="comparison"></div>
+          <div class="actions">
+            <button id="export-comparison-json" type="button" disabled>
+              Download original review JSON</button
+            ><button id="export-comparison-html" type="button" disabled>
+              Download original review HTML
+            </button>
+          </div>
+          <p class="hint">
+            Comparisons are generated from retained builds and are not
+            automatically saved as a separate record. Export them or regenerate
+            the same selected comparison.
+          </p>
+        </article>
+      </section>
+      <section id="help" class="card" aria-labelledby="help-heading">
+        <h2 id="help-heading">Use the full application</h2>
+        <ol>
+          <li>
+            Add your PDFs and source declarations, or create an editable
+            reference project.
+          </li>
+          <li>
+            Edit the project JSON, validate its fields and save an explicit
+            revision.
+          </li>
+          <li>
+            Build the saved revision. Inspect every finding, canonical topic,
+            source page and bounding box.
+          </li>
+          <li>
+            Preview/download exact artifacts. Export a project to preserve its
+            PDFs and settings.
+          </li>
+          <li>
+            Save a revised project and compare the resulting actual builds. Keep
+            human review separate from mechanical publication.
+          </li>
+        </ol>
+        <p>
+          Supported inputs are text-based PDFs with ruled tables and complete
+          exported project JSON. OCR and image/equation understanding are not
+          provided. Image placeholders and heuristic headings require human
+          review. Source units remain as written; this tool does not guess
+          technical meaning or silently convert measurements.
+        </p>
+        <p>
+          This is one trusted OS owner's local workspace, with plaintext SQLite
+          data. It is not a hosted multiuser account service or a sandbox for
+          hostile PDF exploits. No documents leave this machine. The only setup
+          network request is the exact official parser dependency you explicitly
+          approve; normal work is offline.
+        </p>
+        <p>
+          Capacity is explicit: 120 library PDFs, 30 projects, 50 builds and 256
+          MiB retained source/evidence bytes, excluding SQLite overhead. The app
+          never prunes history. Export first, then explicitly remove selected
+          records and unreferenced source PDFs. Close normally before copying
+          the whole workspace for backup.
+        </p>
+        <p>
+          Closing this browser leaves the native owner running. Use Quit
+          application or the owner window's Exit; it stays open until accepted
+          work and actual child processes finish.
+        </p>
+      </section>
+    </main>
+    <footer>
+      <strong>Made by Jason Stys</strong><span>Version 0.2.0</span
+      ><a
+        href="https://github.com/JasonStys/engineering-documentation-foundry"
+        target="_blank"
+        rel="noreferrer noopener"
+        >Source and support</a
+      ><a
+        href="https://github.com/JasonStys"
+        target="_blank"
+        rel="noreferrer noopener"
+        >Contact / portfolio</a
+      >
+    </footer>
+  </body>
+</html>

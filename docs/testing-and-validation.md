@@ -10,6 +10,10 @@ generous performance ceiling.
 
 ## Environment
 
+The following 0.1.0 measurements are historical. The current native/editor work has a separate
+[2026-11-11 validation record](reports/native-application-2026-11-11.md); it does not relabel these
+older observations as a current native release.
+
 - Platform: Windows
 - Python: 3.12.14 locally; CI covers 3.11, 3.12, and 3.13
 - Reference corpus: eight original synthetic PDFs, sixteen pages total
@@ -62,7 +66,7 @@ See [observed 2026-11-09 results](reports/practical-workflows-2026-11-09.md) and
 
 ## Security analysis
 
-The independent CodeQL workflow analyzes Python and Actions with no-build extraction and
+The independent CodeQL workflow now analyzes Python, JavaScript/TypeScript and Actions with no-build extraction and
 `security-extended`. It is triggered by main pushes, main-targeting PRs, weekly schedules and manual
 requests. Repository-policy tests parse the actual YAML and enforce safe triggers, SHA pins, bounded
 jobs, a read-only default and upload-only authority. The [scan record](reports/codeql-2026-11-09.md)
