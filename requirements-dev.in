@@ -1,0 +1,16 @@
+# Jason Stys: exact native/source acceptance tools; PyMuPDF is used for source tests but excluded from native archives.
+-r requirements.in
+PyMuPDF==1.28.2
+build==1.6.1
+hypothesis==6.170.15
+mypy==2.4.1
+pytest==9.2.0
+pytest-cov==7.1.0
+reportlab==5.1.0
+ruff==0.17.4
+types-PyYAML==6.0.12.20261103
+pip-audit==2.10.1
+httpx==0.28.1
+hatchling>=1.27,<2
+editables==0.5
+defusedxml==0.7.1

@@ -82,3 +82,30 @@ replace filesystem inputs without mocking internal implementation details.
 Likely future adapters include OCR extraction, SVG/diagram handling, schema-aware authoring output,
 and SQLite provenance queries. Each should implement the existing typed stage contracts and add a
 contract test before changing orchestration.
+
+## Native authoring layer
+
+`foundry_desktop` adds an owner-local GUI without replacing the deterministic core. The TypeScript
+editor submits raw project JSON, preserving duplicate-field detection on the backend. Source bytes
+are deduplicated by SHA-256 in SQLite. Saving is a compare-and-swap transaction; a build captures
+one explicit saved revision and keeps its input bytes referenced until the actual child finishes.
+Later edits cannot rewrite earlier reports. Complete project import validates all bytes and fields
+before one atomic commit and always creates a new identity; it never adopts imported reports.
+
+The fixed worker materializes only hash-named sources, invokes the existing `run_pipeline`, and
+returns a snapshot-bound protocol record. The owner independently verifies the original manifest,
+publication decision and complete actual output before retaining a deterministic artifact ZIP.
+An API error is distinct from a completed blocked build. Native revision review invokes the
+existing canonical comparator, returning its exact JSON/HTML rather than approximating a diff.
+
+The application holds at most 120 PDFs, 30 editable projects, 50 builds and 256 MiB of logical
+retained source/evidence bytes, plus SQLite overhead. Per-project bounds are 12 declarations,
+32 MiB of unique PDFs, 8 MiB per PDF, 100 pages and 5,000 blocks per page. It does not auto-prune.
+Exact build data are bounded by 2,048 files/64 MiB; one immutable selected-build cache is retained.
+Selection/filter epochs and captured editor contexts keep asynchronous replies from replacing
+another draft or discarding text typed during a save. New authored operations remain disabled
+while one is in flight; the server independently refuses concurrent builds.
+
+The native owner Open/Help/Browser/Exit controls remain separate from the browser. Exit requests
+drain, then waits for actual completion before destroying the window and releasing the workspace.
+The external PDF parser's explicit first-run setup precedes all document/data initialization.

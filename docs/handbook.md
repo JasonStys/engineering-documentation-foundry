@@ -4,7 +4,11 @@ By Jason Stys.
 
 Compare canonical corpus revisions by stable identity, highlighting source-cited content and safety-warning changes in HTML/JSON.
 
-Compare canonical corpus revisions by stable identity, highlighting source-cited content and safety-warning changes in HTML/JSON.
+The current 0.2.0 source also supplies a genuine local native/browser authoring application:
+upload actual PDFs, edit/save projects, run the same publication engine, inspect/download exact
+outputs and retain review history. Start with [the native application guide](native-application.md).
+Its [explicit dependency setup](PDF_ENGINE_SETUP.md) and [new validation](reports/native-application-2026-11-11.md)
+are separate from the historically reviewed Office editions below.
 
 Gives publication reviewers a precise change review before shipping revised documentation.
 
