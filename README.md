@@ -17,9 +17,12 @@ artifacts and compare actual saved revisions. Projects, source bytes and immutab
 survive a normal restart. Prepared manuals are optional editable inputs, rather than a separate demo.
 The original CLI and deterministic publication gates remain available.
 
-Native packaging is being validated in [Desktop application validation](.github/workflows/desktop.yml).
-This source update does not claim a published installer or completed PC installation. See the
-[native application guide](docs/native-application.md) and [dated validation](docs/reports/native-application-2026-11-11.md).
+The [published 0.2.0 Windows portable application](https://github.com/JasonStys/engineering-documentation-foundry/releases/tag/v0.2.0)
+passed independent download and installed synthetic-workspace acceptance, including three normal
+exits and retained builds. Read the [illustrated application guide](docs/reports/windows-application-guide-0.2.0.docx),
+[native usage](docs/native-application.md) and [current installed validation](docs/reports/installed-windows-0.2.0-2026-11-11.md).
+The unsigned ZIP is not a signed installer or a clean-machine certification; Linux/macOS native
+checks are recorded by [Desktop application validation](.github/workflows/desktop.yml).
 
 The authored source is MIT licensed. The native archive excludes PyMuPDF/MuPDF binaries; first-run
 setup explains their **AGPL v3 / Artifex commercial** licensing and asks Install or Cancel before any
@@ -211,3 +214,13 @@ Code and synthetic fixtures are available under the [MIT License](LICENSE).
 Start with the [organized handbook](docs/handbook.md) for current usage, design, security and test guidance. Reviewed downloadable editions: [project-guide.docx](docs/reports/project-guide.docx) · [validation-review.docx](docs/reports/validation-review.docx) · [validation-evidence.xlsx](docs/reports/validation-evidence.xlsx).
 
 [Publication identities and source scope](docs/reports/publications.json) · [Documentation validation record](docs/reports/documentation-refresh-2026-11-09.md). Historical results retain their own tested revision and date.
+
+## Current Windows application guide
+
+The published **0.2.0** edition documents real source uploads, saved registry revisions, original
+publication artifacts and cited revision review in the installed application. Earlier Office
+editions retain their historical baselines.
+
+- [windows-application-guide-0.2.0.docx](docs/reports/windows-application-guide-0.2.0.docx): four illustrated pages with actual installed screenshots, user steps, immutable code and operating limits.
+- [windows-application-guide-0.2.0.json](docs/reports/windows-application-guide-0.2.0.json): public release, document, screenshot, source and individually reviewed page identities.
+- [installed-windows-0.2.0-2026-11-11.md](docs/reports/installed-windows-0.2.0-2026-11-11.md): measured independent download, installed workflows, native menu, data retention and validation scope.

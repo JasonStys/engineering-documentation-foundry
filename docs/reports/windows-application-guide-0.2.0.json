@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "repository": "engineering-documentation-foundry",
+  "runtimeVersion": "0.2.0",
+  "runtimeSource": "fa0cf1a0132e56e2b0016207b3d5aecd08a29c2a",
+  "createdAt": "2026-11-11T23:04:36.631Z",
+  "author": "Jason Stys",
+  "document": "windows-application-guide-0.2.0.docx",
+  "sha256": "8f8a707e230e951ae68200ef9a705f4950550c7fc6caefc91194f032b37c28f3",
+  "screenshots": [
+    {
+      "file": "01-actual-build-evidence.png",
+      "sha256": "23534dcb136c1c0f0af4322c31e293c9d17720c030b116f525cf219bb0b7379a",
+      "width": 663,
+      "height": 478,
+      "caption": "A synthetic field-service PDF produced three canonical topics with zero errors. This actual installed build card retains its revision and evidence downloads. The negative-test markup in its title is displayed literally."
+    },
+    {
+      "file": "05-actual-comparison-viewport.png",
+      "sha256": "128eca72ba8805c262ce86427fefeff3350f8704ffd865b5a1c9d226dd1d4ffe",
+      "width": 1280,
+      "height": 960,
+      "caption": "The actual comparator reports one added, two removed and one changed topic. Removing an overview that contains a safety notice requires human review. Expand the evidence or download its JSON to inspect all details; these counts do not approve a release."
+    }
+  ],
+  "snippets": [
+    {
+      "file": "src/foundry_desktop/service.py",
+      "first": 81,
+      "last": 93,
+      "sha256": "14b5d0becc2b9dcc03ec0279be05791d607ebf998aec6ef9d3e8827902c4d1f9",
+      "url": "https://github.com/JasonStys/engineering-documentation-foundry/blob/fa0cf1a0132e56e2b0016207b3d5aecd08a29c2a/src/foundry_desktop/service.py#L81"
+    }
+  ],
+  "observedTests": [
+    {
+      "name": "Installed original workflows",
+      "observed": "Real PDFs, citations, publication blocks, revised safety content, exact downloads, literal search, editing races, mobile layout and accessibility passed. Four builds/two projects survived three normal exits, including work accepted before Quit.",
+      "result": "Passed"
+    },
+    {
+      "name": "Source and hosted gates",
+      "observed": "290 source cases plus 13 isolated Tk/notice cases; 91.24% combined statement/branch coverage with the original 90% floor. Five editor model cases, strict types, audits, three OS native consumers and all three raw CodeQL categories passed.",
+      "result": "Passed"
+    },
+    {
+      "name": "Distribution and menu",
+      "observed": "Both downloaded assets matched provider identities and checksums. All 114 installed files stayed unchanged. Native Open/Help/Exit and owned HTTP readiness passed, followed by another normal exit and closed listener; individual icon targets were verified.",
+      "result": "Passed"
+    }
+  ],
+  "visualReview": {
+    "approved": true,
+    "reviewers": [
+      "root",
+      "audit_space_drone",
+      "audit_cyber"
+    ],
+    "ooxmlSchema": "passed",
+    "pageCount": 4,
+    "pages": [
+      {
+        "page": 1,
+        "sha256": "31469a0ecc2ff65e248f525d3b2ab7382ab177873bb968e95622fb4f0caf4e6a"
+      },
+      {
+        "page": 2,
+        "sha256": "468efeb2f6634e65738d26407dc0d5be513dca352ede0c461b1a6c9e61235842"
+      },
+      {
+        "page": 3,
+        "sha256": "8ad14e40187e46f0611589410dcf89cb70bd52dd22024859d7a331d2f5d3c99c"
+      },
+      {
+        "page": 4,
+        "sha256": "6327d2dba7dcdfff19021029a82e04422653db5d6d8d301cf68d306450e81d9c"
+      }
+    ],
+    "scope": "Every unchanged final page individually viewed; document, screenshots and immutable source identities checked."
+  },
+  "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "bytes": 84443,
+  "release": {
+    "id": 442271843,
+    "url": "https://github.com/JasonStys/engineering-documentation-foundry/releases/tag/v0.2.0",
+    "assets": [
+      {
+        "name": "engineering-documentation-foundry-v0.2.0-windows-amd64.zip",
+        "bytes": 21638206,
+        "sha256": "eb8d602d779b9dec4dc6fbcff3afa974c7fd27f16789b9d98f3a3eabbde98b79"
+      },
+      {
+        "name": "engineering-documentation-foundry-v0.2.0-windows-amd64.zip.sha256",
+        "bytes": 125,
+        "sha256": "3cc37eefc79b2489912183167d63a830055caf1ace98d9dbda8438c840cd703a"
+      }
+    ]
+  },
+  "sourceChecks": [
+    {
+      "workflow": ".github/workflows/codeql.yml",
+      "url": "https://github.com/JasonStys/engineering-documentation-foundry/actions/runs/43112333881"
+    },
+    {
+      "workflow": ".github/workflows/ci.yml",
+      "url": "https://github.com/JasonStys/engineering-documentation-foundry/actions/runs/43112333937"
+    },
+    {
+      "workflow": ".github/workflows/desktop.yml",
+      "url": "https://github.com/JasonStys/engineering-documentation-foundry/actions/runs/43112333862"
+    }
+  ],
+  "codeqlAnalysisIds": [
+    2147661502,
+    2147660521,
+    2147660306
+  ],
+  "sourceEvidence": {
+    "authoringInputSha256": "92ede9935f0864b08486657654e18f79394dae4f58f693404101c76c84373ac2",
+    "installedReceiptSha256": "1b2fbe53908e5e0bd492bbbc9eb7edb5cb2384b1b166cf99b4375e857624d004",
+    "installedAcceptanceSha256": "ec336d4df66ac6123da1706ab5f769e5c824ebb80ddbbcd33e5d0b989f0754f6",
+    "nativeOwnerMenuSha256": "86be6369625988236df0a3a1c3a850e09f3be4fbcadbbd3219ff52fc9debd217",
+    "scope": "Dated exact-runtime observations; private controller paths, raw receipts and user profiles are not published."
+  }
+}
