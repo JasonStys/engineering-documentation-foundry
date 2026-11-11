@@ -150,6 +150,13 @@ The fixture now supplies an inert absolute root and independently checks the res
 no fixture DLL/System32 is executed. The full local console suite passed 290 tests at 91.24% after
 that correction. Latest-source hosted gates still must pass; the earlier failed matrix is retained.
 
+The next matrix passed all 290 source tests on all three original Python versions. Python 3.11's
+unchanged installed-environment audit then correctly refused the runner's ambient `setuptools`
+79.0.1, which carried known advisories. The development input/complete hash lock now explicitly
+selects 84.2.1, already used by the separate native packaging graph. No other resolved development
+version changed, no advisory was ignored, and no claim is made that the old ambient tool was part
+of the accepted minimal native runtime. See the [upstream advisory](https://github.com/advisories/GHSA-xmj3-9gf7-h52w).
+
 ## Required clean/hosted gate and reproduction
 
 Run from a clean checkout, with the supported toolchain and the exact locked browser installed:

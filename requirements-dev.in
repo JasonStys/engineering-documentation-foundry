@@ -14,3 +14,5 @@ httpx==0.28.1
 hatchling>=1.27,<2
 editables==0.5
 defusedxml==0.7.1
+# Python 3.11 setup environments still provide this otherwise ambient build tool.
+setuptools==84.2.1
